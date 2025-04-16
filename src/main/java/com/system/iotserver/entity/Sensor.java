@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "sensors")
@@ -11,15 +12,20 @@ public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+
     @Column ( name = "temperature")
     private double temperature;
     @Column ( name = "humidity")
     private double  humidity;
     @Column ( name = "light")
     private double light ;
+//new
+//    @Column ( name = "cloud")
+//    private double cloud ;
 
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
+    @Column(name = "created_at", updatable = false, columnDefinition = "DATETIME(0)")
     private LocalDateTime createdAt;
 
     public Sensor() {
@@ -29,6 +35,13 @@ public class Sensor {
         this.humidity = humidity;
         this.light = light;
     }
+//new
+//    public Sensor(double temperature, double humidity, double light, double cloud) {
+//        this.temperature = temperature;
+//        this.humidity = humidity;
+//        this.light = light;
+//        this.cloud = cloud;
+//    }
 
     public int getId() {
         return id;
@@ -62,6 +75,15 @@ public class Sensor {
         this.light = light;
     }
 
+//    new
+//    public double getCloud() {
+//        return cloud;
+//    }
+//
+//    public void setCloud(double cloud) {
+//        this.cloud = cloud;
+//    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -69,4 +91,5 @@ public class Sensor {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
 }

@@ -34,9 +34,12 @@ public class SensorServiceImpl implements SensorService{
                     return sensorRepository.findByHumidity(Double.parseDouble(filterValue), pageable);
                 case "light":
                     return sensorRepository.findByLight(Double.parseDouble(filterValue), pageable);
+//                    new
+//                case "cloud":
+//                    return sensorRepository.findByCloud(Double.parseDouble(filterValue), pageable);
                 case "createdat":
                     LocalDateTime filterDate = LocalDateTime.parse(filterValue, DateTimeFormatter.ISO_DATE_TIME);
-                    return sensorRepository.findByCreatedAtAfter(filterDate, pageable);
+                    return sensorRepository.findByCreatedAt(filterDate, pageable);
                 case "all":
                     return sensorRepository.findByAllFields(filterValue, pageable);
                 default:
